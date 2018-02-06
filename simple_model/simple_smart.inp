@@ -52,7 +52,7 @@ Gage1            INTENSITY 1:00     1.0      TIMESERIES rainfall
 [SUBCATCHMENTS]
 ;;Name           Rain Gage        Outlet           Area     %Imperv  Width    %Slope   CurbLen  SnowPack        
 ;;-------------- ---------------- ---------------- -------- -------- -------- -------- -------- ----------------
-S1               Gage1            J1               30       50       400      0.5      0                        
+S1               Gage1            J1               10       50       400      0.5      0                        
 
 [SUBAREAS]
 ;;Subcatchment   N-Imperv   N-Perv     S-Imperv   S-Perv     PctZero    RouteTo    PctRouted 
@@ -91,7 +91,7 @@ C3               J3               Out1             400        0.01       0      
 [ORIFICES]
 ;;Name           From Node        To Node          Type         Offset     Qcoeff     Gated    CloseTime 
 ;;-------------- ---------------- ---------------- ------------ ---------- ---------- -------- ----------
-R1               St1              J2               SIDE         3          0.65       NO       0         
+R1               St1              J2               BOTTOM       0          0.65       NO       0         
 
 [XSECTIONS]
 ;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
@@ -100,6 +100,36 @@ C1               CIRCULAR     2                0          0          0          
 C2               CIRCULAR     1                0          0          0          1                    
 C3               CIRCULAR     1                0          0          0          1                    
 R1               CIRCULAR     1                0          0          0
+
+[CONTROLS]
+RULE R0
+IF SIMULATION TIME < 0.001 
+THEN ORIFICE R1 SETTING = 0
+
+RULE R1
+IF SIMULATION TIME > 0.001
+AND SIMULATION TIME < 1
+THEN ORIFICE R1 SETTING = 1.0
+
+RULE R2
+IF SIMULATION TIME > 1
+AND NODE St1 DEPTH < 1.5
+THEN ORIFICE R1 SETTING = 0.0
+
+RULE R3
+IF SIMULATION TIME > 1
+AND NODE St1 DEPTH > 1.5
+THEN ORIFICE R1 SETTING = 0.25
+
+RULE R4
+IF SIMULATION TIME > 1
+AND NODE St1 DEPTH > 3
+THEN ORIFICE R1 SETTING = 0.75
+
+RULE R5
+IF SIMULATION TIME > 1
+AND NODE St1 DEPTH > 4
+THEN ORIFICE R1 SETTING = 1.0
 
 [TIMESERIES]
 ;;Name           Date       Time       Value     
