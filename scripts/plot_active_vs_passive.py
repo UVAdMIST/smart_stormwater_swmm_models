@@ -1,16 +1,19 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import rc
+from run_swmm import swmm_results
 
 # activate latex text rendering
 rc('text', usetex=True)
 
-df = pd.read_csv("dumb_vs_smart.csv", index_col=0, skiprows=1, names=[r"DS Node Depth (ft)-\textit{Active}", 
-    r"DS Node Depth (ft)-\textit{Passive}", r"DS Node Flooding (cfs)-\textit{Passive}"])
-df.reset_index(inplace=True)
-df.set_index(df.index/12., inplace=True)
+res_dumb = swmm_results("../simple_model/simple_dumb.inp")
+res_smrt = swmm_results("../simple_model/simple_smart.inp")
+col_names = [r"DS Node Depth (ft)-\textit{Active}", r"DS Node Depth (ft)-\textit{Passive}", 
+        r"DS Node Flooding (cfs)-\textit{Passive}"]
+comb = pd.concat([res_smrt.node_depth_df["J3"], res_dumb.node_depth_df["J3"], res_dumb.node_flood_df["J3"]], 1)
+comb.columns = col_names 
 font_size = 12
-ax = df.plot(fontsize=font_size, lw=3, legend=False)
+ax = comb.plot(fontsize=font_size, lw=3)
 lines = ax.lines
 passive_color = "0.55"
 lines[1].set_color(passive_color)
