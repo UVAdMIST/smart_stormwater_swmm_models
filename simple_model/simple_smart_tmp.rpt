@@ -1,5 +1,5 @@
 
-  EPA STORM WATER MANAGEMENT MODEL - VERSION 5.1 (Build 5.2.0.dev1)
+  EPA STORM WATER MANAGEMENT MODEL - VERSION 5.1 (Build 5.1.012)
   --------------------------------------------------------------
 
   
@@ -221,6 +221,6 @@
   C3                          0.01      6.79      0.01      6.80         0.01
   
 
-  Analysis begun on:  Mon Mar  5 17:33:08 2018
-  Analysis ended on:  Mon Mar  5 17:33:18 2018
-  Total elapsed time: 00:00:10
+  Analysis begun on:  Mon Mar 05 17:33:18 2018
+  Analysis ended on:  Mon Mar 05 17:33:18 2018
+  Total elapsed time: < 1 sec
