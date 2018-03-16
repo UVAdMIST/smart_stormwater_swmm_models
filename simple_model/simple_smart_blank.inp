@@ -101,29 +101,6 @@ C2               CIRCULAR     1                0          0          0          
 C3               CIRCULAR     1                0          0          0          1                    
 R1               CIRCULAR     1                0          0          0
 
-[CONTROLS]
-RULE R1
-IF SIMULATION TIME < 2
-THEN ORIFICE R1 SETTING = 1.0
-
-RULE R2
-IF SIMULATION TIME > 2
-AND NODE St1 DEPTH < 3
-THEN ORIFICE R1 SETTING = 0.0
-
-RULE R3
-IF SIMULATION TIME > 2
-AND NODE St1 DEPTH > 1.5
-THEN ORIFICE R1 SETTING = 0.5
-
-RULE R4
-IF SIMULATION TIME > 2
-AND NODE St1 DEPTH > 3
-THEN ORIFICE R1 SETTING = 1.0
-
-
-
-
 [TIMESERIES]
 ;;Name           Date       Time       Value     
 ;;-------------- ---------- ---------- ----------
