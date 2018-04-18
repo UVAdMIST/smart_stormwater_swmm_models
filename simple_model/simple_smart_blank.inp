@@ -16,7 +16,7 @@ START_TIME           00:00:00
 REPORT_START_DATE    02/06/2018
 REPORT_START_TIME    00:00:00
 END_DATE             02/06/2018
-END_TIME             05:00:00
+END_TIME             16:00:00
 SWEEP_START          01/01
 SWEEP_END            12/31
 DRY_DAYS             0
@@ -39,8 +39,7 @@ MINIMUM_STEP         0.5
 THREADS              4
 
 [FILES]
-;;Interfacing Files
-SAVE HOTSTART "hs3.hsf"
+SAVE HOTSTART "mymodel.hsf"
 
 [EVAPORATION]
 ;;Data Source    Parameters
@@ -108,7 +107,7 @@ R1               CIRCULAR     1                0          0          0
 [TIMESERIES]
 ;;Name           Date       Time       Value     
 ;;-------------- ---------- ---------- ----------
-rainfall         FILE "C:\Users\Jeff\Documents\research\Sadler_4thPaper\SWMM\data\simple_model_rainfall.csv"
+rainfall         FILE "/home/jeff/Documents/research/Sadler4th_paper/swmm_models_and_scripts/data/simple_model_rainfall.csv"
 
 [REPORT]
 ;;Reporting Options
