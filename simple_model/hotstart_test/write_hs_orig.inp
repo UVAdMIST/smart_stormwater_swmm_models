@@ -39,7 +39,7 @@ MINIMUM_STEP         0.5
 THREADS              4
 
 [FILES]
-SAVE HOTSTART "mymodel.hsf"
+SAVE HOTSTART "<hsfile>.hsf"
 
 [EVAPORATION]
 ;;Data Source    Parameters

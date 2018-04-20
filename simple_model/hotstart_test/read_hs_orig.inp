@@ -16,7 +16,7 @@ START_TIME           00:00:00
 REPORT_START_DATE    02/06/2018
 REPORT_START_TIME    00:00:00
 END_DATE             02/06/2018
-END_TIME             06:00:00
+END_TIME             16:00:00
 SWEEP_START          01/01
 SWEEP_END            12/31
 DRY_DAYS             0
@@ -39,7 +39,7 @@ MINIMUM_STEP         0.5
 THREADS              4
 
 [FILES]
-SAVE HOTSTART "mymodel.hsf"
+USE HOTSTART "<hsfile>.hsf"
 
 [EVAPORATION]
 ;;Data Source    Parameters
