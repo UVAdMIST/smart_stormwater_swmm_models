@@ -48,18 +48,15 @@ coord_nw = pd.DataFrame(index=us_node_data.index,
                             }
                        )
 
+conduits_columns = ['InletNode', 'OutletNode', 'Length', 'ManningN', 'InletOffset', 'OutletOffset',
+                   'InitFlow', 'MaxFlow'] 
+conduits_data = [us_cons[us_node_col_name], us_cons[ds_node_col_name], us_cons['Pipe_Lengt'], 
+                 0.015, 0, 0, 0, 0 ]
 conduits_nw = pd.DataFrame(index=us_cons.index,
-                           data={
-                               'InletNode':us_cons[us_node_col_name],
-                               'OutletNode':us_cons[ds_node_col_name],
-                               'Length':us_cons["Pipe_Lengt"],
-                               'ManningN':0.015,
-                               'InletOffset':0,
-                               'OutletOffset':0,
-                               'InitFlow':0,
-                               'MaxFlow':0,
-                                }
+                           data=dict(zip(conduits_columns, conduits_data))
                           )
+conduits_nw = conduits_nw[conduits_columns]
+
 
 # replace the template model junctions with info from the node shapefile
 replace_inp_section(target_inp, '[JUNCTIONS]', jxns_nw)
