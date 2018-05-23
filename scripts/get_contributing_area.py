@@ -1,5 +1,5 @@
 def get_upstream_conduits(node_id, con_df, in_col_name="InletNode", out_col_name="OutletNode"):
-    us_nodes = get_upstream_nodes(node_id, con_df)
+    us_nodes = get_upstream_nodes(node_id, con_df, in_col_name, out_col_name)
     us_cons = con_df[(con_df[in_col_name].isin(us_nodes)) | (con_df[out_col_name].isin(us_nodes))] 
     return us_cons.index
 
