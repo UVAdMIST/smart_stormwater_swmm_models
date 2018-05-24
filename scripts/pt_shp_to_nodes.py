@@ -18,9 +18,11 @@ target_inp = "../brambleton/brambleton.inp"
 copyfile(template_inp, target_inp)
 
 # read in node and pipe input data
-node_data_file = "../brambleton/spatial/nodes_attr.txt"
+node_data_file = "../brambleton/spatial/nodes_attr.csv"
 ndf = pd.read_csv(node_data_file)
-pipe_data_file = "../brambleton/spatial/pipes_attr.txt"
+ndf.set_index("Structure_", inplace=True)
+ndf.sort_index(inplace=True)
+pipe_data_file = "../brambleton/spatial/pipes_attr.csv"
 pdf = pd.read_csv(pipe_data_file)
 
 # get just the nodes in our area
@@ -28,9 +30,7 @@ outlet_id = 'F15531'
 us_node_col_name = "Upstream_S"
 ds_node_col_name = "Downstream" 
 us_node_ids = get_upstream_nodes(outlet_id, pdf, us_node_col_name, ds_node_col_name)
-us_node_data = ndf[ndf["Structure_"].isin(us_node_ids)]
-us_node_data.set_index("Structure_", inplace=True)
-us_node_data.sort_index(inplace=True)
+us_node_data = ndf.loc[us_node_ids]
 
 # get just the conduits in our area
 us_cons_ids = get_upstream_conduits(outlet_id, pdf, in_col_name=us_node_col_name, out_col_name=ds_node_col_name)
@@ -43,6 +43,12 @@ jxns_cols = ['InvertElev', 'MaxDepth', 'SurchargedDepth', 'PondedArea']
 # data for the columns
 jxns_data = [us_node_data['Invert_Ele'], us_node_data['Rim_Elevat'], 0, 0]
 jxns_nw = make_new_df(us_node_data.index, jxns_cols, jxns_data)
+
+# make OUTFALLS dataframe
+outlet_info = ndf.loc[outlet_id]
+of_cols = ['InvertElev', 'OutfallType', 'StageOrTimeseries', 'TideGate']
+of_data = [outlet_info['Invert_Ele'], 'FREE', '', 'NO']
+of_nw = make_new_df([outlet_id], of_cols, of_data)
 
 # make COORDINATES dataframe
 coord_cols = ['X-Coord', 'Y-Coord']
@@ -72,3 +78,4 @@ replace_inp_section(target_inp, '[JUNCTIONS]', jxns_nw)
 replace_inp_section(target_inp, '[COORDINATES]', coord_nw)
 replace_inp_section(target_inp, '[CONDUITS]', conduits_nw)
 replace_inp_section(target_inp, '[XSECTIONS]', xsec_nw)
+replace_inp_section(target_inp, '[OUTFALLS]', of_nw)

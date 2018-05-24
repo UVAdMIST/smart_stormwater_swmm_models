@@ -1,0 +1,134 @@
+Error Report for File C:\Users\Jeff\Documents\research\Sadler_4thPaper\smart_stormwater_swmm_models\brambleton\brambleton.inp
+Undefined Node (F15741) referenced at line 419:
+[CONDUIT]
+889    F15742       F15741       39.0          0.015    0           0            0        0
+
+Undefined Node (F15531) referenced at line 457:
+[CONDUIT]
+927    F15532       F15531       305.0         0.015    0           0            0        0
+
+Undefined Node (F15741) referenced at line 472:
+[CONDUIT]
+942    F15741       F15739       102.0         0.015    0           0            0        0
+
+Undefined Node (F15741) referenced at line 474:
+[CONDUIT]
+944    F15744       F15741       179.0         0.015    0           0            0        0
+
+Undefined Node (F154052) referenced at line 526:
+[CONDUIT]
+1050   F154051      F154052      42.0          0.015    0           0            0        0
+
+Undefined Node (F144055.01) referenced at line 567:
+[CONDUIT]
+1283   F144055      F144055.01   5.0           0.015    0           0            0        0
+
+Undefined Node (F146053) referenced at line 615:
+[CONDUIT]
+1725   F14980       F146053      69.0          0.015    0           0            0        0
+
+Undefined Node (F15617.01) referenced at line 616:
+[CONDUIT]
+1726   F15617       F15617.01    52.0          0.015    0           0            0        0
+
+Undefined Node (G141023) referenced at line 667:
+[CONDUIT]
+1801   G141033      G141023      48.0          0.015    0           0            0        0
+
+Undefined Node (G141023) referenced at line 675:
+[CONDUIT]
+1809   G141027      G141023      98.0          0.015    0           0            0        0
+
+Undefined Node (G141023) referenced at line 676:
+[CONDUIT]
+1810   G141023      G141024      110.0         0.015    0           0            0        0
+
+Undefined Node (G141024) referenced at line 677:
+[CONDUIT]
+1811   G141024      G141021      244.0         0.015    0           0            0        0
+
+Undefined Node (F146051) referenced at line 686:
+[CONDUIT]
+1820   F146051      F146050      145.0         0.015    0           0            0        0
+
+Undefined Node (F15531) referenced at line 720:
+[CONDUIT]
+1859   F15540       F15531       26.0          0.015    0           0            0        0
+
+Undefined Node (F146051.01) referenced at line 723:
+[CONDUIT]
+1862   F146051.01   F146051      33.41859968   0.015    0           0            0        0
+
+Undefined Node (G141020) referenced at line 744:
+[CONDUIT]
+1884   G141020      G141018      45.0          0.015    0           0            0        0
+
+Undefined Node (J2) referenced at line 770:
+[ORIFICE]
+R1               St1              J2               BOTTOM       3          0.65       NO       0
+
+Undefined Link (889) referenced at line 774:
+[XSECTION]
+889    CIRCULAR        1.25             0.0              0     0     1
+
+Undefined Link (927) referenced at line 812:
+[XSECTION]
+927    CIRCULAR        1.25             0.0              0     0     1
+
+Undefined Link (942) referenced at line 827:
+[XSECTION]
+942    CIRCULAR        1.25             0.0              0     0     1
+
+Undefined Link (944) referenced at line 829:
+[XSECTION]
+944    CIRCULAR        1.25             0.0              0     0     1
+
+Undefined Link (1050) referenced at line 881:
+[XSECTION]
+1050   CIRCULAR        1.25             0.0              0     0     1
+
+Undefined Link (1283) referenced at line 922:
+[XSECTION]
+1283   CIRCULAR        1.25             0.0              0     0     1
+
+Undefined Link (1725) referenced at line 970:
+[XSECTION]
+1725   CIRCULAR        1.25             0.0              0     0     1
+
+Undefined Link (1726) referenced at line 971:
+[XSECTION]
+1726   CIRCULAR        1.25             0.0              0     0     1
+
+Undefined Link (1801) referenced at line 1022:
+[XSECTION]
+1801   CIRCULAR        2.0              0.0              0     0     1
+
+Undefined Link (1809) referenced at line 1030:
+[XSECTION]
+1809   CIRCULAR        2.0              0.0              0     0     1
+
+Undefined Link (1810) referenced at line 1031:
+[XSECTION]
+1810   CIRCULAR        2.0              0.0              0     0     1
+
+Undefined Link (1811) referenced at line 1032:
+[XSECTION]
+1811   CIRCULAR        2.0              0.0              0     0     1
+
+Undefined Link (1820) referenced at line 1041:
+[XSECTION]
+1820   CIRCULAR        2.0              0.0              0     0     1
+
+Undefined Link (1859) referenced at line 1075:
+[XSECTION]
+1859   RECT_CLOSED     10.0             5.0              0     0     1
+
+Undefined Link (1862) referenced at line 1078:
+[XSECTION]
+1862   CIRCULAR        2.0              0.0              0     0     1
+
+Undefined Link (1884) referenced at line 1099:
+[XSECTION]
+1884   CIRCULAR        1.25             0.0              0     0     1
+
+
