@@ -26,14 +26,18 @@ pipe_data_file = "../brambleton/spatial/pipes_attr.csv"
 pdf = pd.read_csv(pipe_data_file)
 
 # get just the nodes in our area
+# todo: needs to take a list of outlet nodes
 outlet_id = 'F15531'
 us_node_col_name = "Upstream_S"
 ds_node_col_name = "Downstream" 
-us_node_ids = get_upstream_nodes(outlet_id, pdf, us_node_col_name, ds_node_col_name)
+us_node_ids = get_upstream_nodes(outlet_id, pdf, us_node_col_name, 
+                                 ds_node_col_name)
 us_node_data = ndf.loc[us_node_ids]
 
 # get just the conduits in our area
-us_cons_ids = get_upstream_conduits(outlet_id, pdf, in_col_name=us_node_col_name, out_col_name=ds_node_col_name)
+us_cons_ids = get_upstream_conduits(outlet_id, pdf, 
+                                    in_col_name=us_node_col_name, 
+                                    out_col_name=ds_node_col_name)
 us_cons = pdf.loc[us_cons_ids]
 
 # convert the data into the format of the inp file tables
@@ -56,10 +60,10 @@ coord_data = [us_node_data['Easting'], us_node_data['Northing']]
 coord_nw = make_new_df(us_node_data.index, coord_cols, coord_data)
 
 # make CONDUITS dataframe
-conduits_cols = ['InletNode', 'OutletNode', 'Length', 'ManningN', 'InletOffset', 'OutletOffset',
-                   'InitFlow', 'MaxFlow'] 
-conduits_data = [us_cons[us_node_col_name], us_cons[ds_node_col_name], us_cons['Pipe_Lengt'], 
-                 0.015, 0, 0, 0, 0 ]
+conduits_cols = ['InletNode', 'OutletNode', 'Length', 'ManningN', 'InletOffset',
+                 'OutletOffset', 'InitFlow', 'MaxFlow'] 
+conduits_data = [us_cons[us_node_col_name], us_cons[ds_node_col_name],
+                 us_cons['Pipe_Lengt'], 0.015, 0, 0, 0, 0 ]
 conduits_nw = make_new_df(us_cons.index, conduits_cols, conduits_data)
 
 # make XSECTION dataframe
@@ -72,6 +76,10 @@ xsec_data = [np.select(xsec_geom_sel, xsec_geom_vals),
              us_cons['Horizontal']/12., us_cons['Vertical_D']/12., 0, 0, 1, ''] 
              
 xsec_nw = make_new_df(us_cons.index, xsec_cols, xsec_data)
+
+# make SUBCATCHMENTS dataframe
+sub_catch_cols = ['Name, Rain Gage, Outlet, Area, %Imperv, Width, %Slope, CurbLen, SnowPack''gt']
+
 
 # replace the template model junctions with info from the node shapefile
 replace_inp_section(target_inp, '[JUNCTIONS]', jxns_nw)

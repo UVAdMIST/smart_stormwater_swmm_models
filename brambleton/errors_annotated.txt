@@ -1,16 +1,21 @@
 Error Report for File C:\Users\Jeff\Documents\research\Sadler_4thPaper\smart_stormwater_swmm_models\brambleton\brambleton.inp
+
+## missing label
 Undefined Node (F15741) referenced at line 419:
 [CONDUIT]
 889    F15742       F15741       39.0          0.015    0           0            0        0
 
+## outfall
 Undefined Node (F15531) referenced at line 457:
 [CONDUIT]
 927    F15532       F15531       305.0         0.015    0           0            0        0
 
+## missing label
 Undefined Node (F15741) referenced at line 472:
 [CONDUIT]
 942    F15741       F15739       102.0         0.015    0           0            0        0
 
+## missing label
 Undefined Node (F15741) referenced at line 474:
 [CONDUIT]
 944    F15744       F15741       179.0         0.015    0           0            0        0
@@ -19,42 +24,52 @@ Undefined Node (F154052) referenced at line 526:
 [CONDUIT]
 1050   F154051      F154052      42.0          0.015    0           0            0        0
 
+## switched us/ds nodes
 Undefined Node (F144055.01) referenced at line 567:
 [CONDUIT]
 1283   F144055      F144055.01   5.0           0.015    0           0            0        0
 
+## switched us/ds nodes
 Undefined Node (F146053) referenced at line 615:
 [CONDUIT]
 1725   F14980       F146053      69.0          0.015    0           0            0        0
 
+## switched us/ds nodes
 Undefined Node (F15617.01) referenced at line 616:
 [CONDUIT]
 1726   F15617       F15617.01    52.0          0.015    0           0            0        0
 
+## missing label
 Undefined Node (G141023) referenced at line 667:
 [CONDUIT]
 1801   G141033      G141023      48.0          0.015    0           0            0        0
 
+## missing label
 Undefined Node (G141023) referenced at line 675:
 [CONDUIT]
 1809   G141027      G141023      98.0          0.015    0           0            0        0
 
+## missing label
 Undefined Node (G141023) referenced at line 676:
 [CONDUIT]
 1810   G141023      G141024      110.0         0.015    0           0            0        0
 
+## missing label
 Undefined Node (G141024) referenced at line 677:
 [CONDUIT]
 1811   G141024      G141021      244.0         0.015    0           0            0        0
 
+## missing label
 Undefined Node (F146051) referenced at line 686:
 [CONDUIT]
 1820   F146051      F146050      145.0         0.015    0           0            0        0
 
+## outfall
 Undefined Node (F15531) referenced at line 720:
 [CONDUIT]
 1859   F15540       F15531       26.0          0.015    0           0            0        0
 
+## missing label
 Undefined Node (F146051.01) referenced at line 723:
 [CONDUIT]
 1862   F146051.01   F146051      33.41859968   0.015    0           0            0        0
