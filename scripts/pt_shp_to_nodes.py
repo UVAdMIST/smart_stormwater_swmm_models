@@ -78,7 +78,14 @@ xsec_data = [np.select(xsec_geom_sel, xsec_geom_vals),
 xsec_nw = make_new_df(us_cons.index, xsec_cols, xsec_data)
 
 # make SUBCATCHMENTS dataframe
-sub_catch_cols = ['Name, Rain Gage, Outlet, Area, %Imperv, Width, %Slope, CurbLen, SnowPack''gt']
+sub_catch_cols = ['Rain Gage', 'Outlet', 'Area', '%Imperv', 'Width', '%Slope',
+                  'CurbLen', 'SnowPack']
+subs_data_file = "../brambleton/spatial/basin_attr.csv"
+subs = pd.read_csv(subs_data_file)
+us_subs = subs[subs['Sub_Basin_'].isin(us_node_ids)]
+subs_data = ['raingauge1', us_subs['Sub_Basin_'], us_subs['Shape_Area'], 
+             20, 400, 1, 0, '']
+subs_nw = make_new_df(us_subs.index, sub_catch_cols, subs_data)
 
 
 # replace the template model junctions with info from the node shapefile
@@ -87,3 +94,4 @@ replace_inp_section(target_inp, '[COORDINATES]', coord_nw)
 replace_inp_section(target_inp, '[CONDUITS]', conduits_nw)
 replace_inp_section(target_inp, '[XSECTIONS]', xsec_nw)
 replace_inp_section(target_inp, '[OUTFALLS]', of_nw)
+replace_inp_section(target_inp, '[SUBCATCHMENTS]', subs_nw)
