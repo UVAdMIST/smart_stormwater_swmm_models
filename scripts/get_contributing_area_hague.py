@@ -10,3 +10,5 @@ a0 = get_contributing_area("St1", cons, subs)
 a1 = get_contributing_area("E143351", cons, subs)
 a2 = get_contributing_area("E144050", cons, subs)
 a3 = get_contributing_area("E146004", cons, subs)
+a4 = get_contributing_area("F134101", cons, subs)
+print a4

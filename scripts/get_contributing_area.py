@@ -19,7 +19,7 @@ def get_upstream_nodes(node_id, con_df, in_col_name="InletNode", out_col_name="O
 
 def get_contributing_subs(node_id, con_df, subs_df, **kwargs):
     us_nodes = get_upstream_nodes(node_id, con_df, **kwargs)
-    us_subs = subs_df[subs["Outlet"].isin(us_nodes)]
+    us_subs = subs_df[subs_df["Outlet"].isin(us_nodes)]
     return us_subs
 
 def get_contributing_area(node_id, con_df, subs_df, **kwargs):
