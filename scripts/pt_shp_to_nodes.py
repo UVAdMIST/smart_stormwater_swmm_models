@@ -59,12 +59,24 @@ coord_cols = ['X-Coord', 'Y-Coord']
 coord_data = [us_node_data['Easting'], us_node_data['Northing']]
 coord_nw = make_new_df(us_node_data.index, coord_cols, coord_data)
 
+# add outlet to COORDINATES dataframe
+outlet_coords = pd.DataFrame(dict(zip(coord_cols, 
+                                      [ndf.loc[outlet_id, 'Easting'],
+                                       ndf.loc[outlet_id, 'Northing']
+                                       ])),
+                            index = [outlet_id] 
+                            )
+coord_nw = coord_nw.append(outlet_coords)
+
 # make CONDUITS dataframe
 conduits_cols = ['InletNode', 'OutletNode', 'Length', 'ManningN', 'InletOffset',
                  'OutletOffset', 'InitFlow', 'MaxFlow'] 
 conduits_data = [us_cons[us_node_col_name], us_cons[ds_node_col_name],
                  us_cons['Pipe_Lengt'], 0.015, 0, 0, 0, 0 ]
 conduits_nw = make_new_df(us_cons.index, conduits_cols, conduits_data)
+
+# adjust so outfall has only one inlet (requirement of SWMM)
+conduits_nw.loc[927, 'OutletNode'] = 'F15540'
 
 # make XSECTION dataframe
 xsec_cols = ['Shape', 'Geom1', 'Geom2', 'Geom3', 'Geom4', 'Barrels', 'Culvert']
@@ -77,16 +89,36 @@ xsec_data = [np.select(xsec_geom_sel, xsec_geom_vals),
              
 xsec_nw = make_new_df(us_cons.index, xsec_cols, xsec_data)
 
+#adjust so conduit 1863 has a non-zero max depth
+xsec_nw.loc[1863, 'Geom1'] = 2.0
+
 # make SUBCATCHMENTS dataframe
 sub_catch_cols = ['Rain Gage', 'Outlet', 'Area', '%Imperv', 'Width', '%Slope',
                   'CurbLen', 'SnowPack']
 subs_data_file = "../brambleton/spatial/basin_attr.csv"
 subs = pd.read_csv(subs_data_file)
 us_subs = subs[subs['Sub_Basin_'].isin(us_node_ids)]
-subs_data = ['raingauge1', us_subs['Sub_Basin_'], us_subs['Shape_Area'], 
+subs_data = ['raingage1', us_subs['Sub_Basin_'], us_subs['Calculated'], 
              20, 400, 1, 0, '']
 subs_nw = make_new_df(us_subs.index, sub_catch_cols, subs_data)
 
+# make SUBAREAS dataframe
+sub_area_cols = ['N-Imperv', 'N-Perv', 'S-Imperv', 'S-Perv', 'PctZero', 
+                 'RouteTo']
+sub_area_data = [0.01, 0.1, 0.05, 0.05, 25, 'OUTLET', '']
+sub_area_nw = make_new_df(us_subs.index, sub_area_cols, sub_area_data)
+
+# make INFILTRATION dataframe
+infil_cols = ['Suction', 'Ksat', 'IMD']
+infil_data = [3.5, 0.5, 0.26]
+infil_nw = make_new_df(us_subs.index, infil_cols, infil_data)
+
+# add RAINGAGES dataframe
+raingage_cols = ['Format', 'Interval', 'SCF', 'Source']
+raingage_names = ['raingage1']
+raingage_idx  = raingage_names
+raingage_data = ['INTENSITY', '1:00', '1.0', 'TIMESERIES rainfall']
+raingage_df = make_new_df(raingage_idx, raingage_cols, raingage_data)
 
 # replace the template model junctions with info from the node shapefile
 replace_inp_section(target_inp, '[JUNCTIONS]', jxns_nw)
@@ -95,3 +127,6 @@ replace_inp_section(target_inp, '[CONDUITS]', conduits_nw)
 replace_inp_section(target_inp, '[XSECTIONS]', xsec_nw)
 replace_inp_section(target_inp, '[OUTFALLS]', of_nw)
 replace_inp_section(target_inp, '[SUBCATCHMENTS]', subs_nw)
+replace_inp_section(target_inp, '[SUBAREAS]', sub_area_nw)
+replace_inp_section(target_inp, '[INFILTRATION]', infil_nw)
+replace_inp_section(target_inp, '[RAINGAGES]', raingage_df)
