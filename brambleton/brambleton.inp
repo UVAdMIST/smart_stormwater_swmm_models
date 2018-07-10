@@ -11,19 +11,19 @@ MIN_SLOPE            0
 ALLOW_PONDING        NO
 SKIP_STEADY_STATE    NO
 
-START_DATE           02/06/2018
+START_DATE           08/12/2017
 START_TIME           00:00:00
-REPORT_START_DATE    02/06/2018
+REPORT_START_DATE    08/12/2017
 REPORT_START_TIME    00:00:00
-END_DATE             02/06/2018
-END_TIME             14:00:00
+END_DATE             08/13/2017
+END_TIME             00:00:00
 SWEEP_START          01/01
 SWEEP_END            12/31
 DRY_DAYS             0
-REPORT_STEP          00:15:00
+REPORT_STEP          00:01:00
 WET_STEP             00:05:00
 DRY_STEP             01:00:00
-ROUTING_STEP         0:00:10 
+ROUTING_STEP         0:00:01 
 
 INERTIAL_DAMPING     PARTIAL
 NORMAL_FLOW_LIMITED  BOTH
@@ -47,7 +47,7 @@ DRY_ONLY         NO
 [RAINGAGES]
 ;;Name           Format    Interval SCF      Source    
 ;;-------------- --------- ------ ------ ----------
-raingage1        INTENSITY 1:00     1.0      TIMESERIES rainfall        
+raingage1        INTENSITY 0:15     1.0      TIMESERIES rain_2017_08_12 
 
 [SUBCATCHMENTS]
 ;;Name           Rain Gage        Outlet           Area     %Imperv  Width    %Slope   CurbLen  SnowPack        
@@ -954,7 +954,7 @@ G141018          0.83       6.47       0          0          0
 G141017          1.5        5.8        0          0          0         
 F14957           3.5        7.8        0          0          0         
 G15843           4.03       8.21       0          0          0         
-G15847           -2.5       4.26       0          0          0         
+G15847           2.5        4.26       0          0          0         
 G15836           2.45       6.56       0          0          0         
 G141021          1.43       7.34       0          0          0         
 G141020          2.82       6.08       0          0          0         
@@ -1024,7 +1024,7 @@ G14901           3.82       9.96       0          0          0
 G14902           4.3        9.88       0          0          0         
 G14903           3.9        10.98      0          0          0         
 G14904           7.53       10.97      0          0          0         
-G15850.04        -1.93      0.0        0          0          0         
+G15850.04        -1.93      0.0        0          10         0         
 
 [OUTFALLS]
 ;;Name           Elevation  Type       Stage Data       Gated    Route To        
@@ -1035,6 +1035,7 @@ F15531           -5.0       FREE                        NO
 ;;Name           Elev.    MaxDepth   InitDepth  Shape      Curve Name/Params            N/A      Fevap    Psi      Ksat     IMD     
 ;;-------------- -------- ---------- ----------- ---------- ---------------------------- -------- --------          -------- --------
 St1              90       5          0.75       FUNCTIONAL 0         0         40000    0        0       
+Stb              -4.5     12.5       7          FUNCTIONAL 0         0         90000    0        0       
 
 [CONDUITS]
 ;;Name           From Node        To Node          Length     Roughness  InOffset   OutOffset  InitFlow   MaxFlow   
@@ -1411,6 +1412,8 @@ St1              90       5          0.75       FUNCTIONAL 0         0         4
 1746             G14901           G14899           26.0       0.015      0          0          0          0         
 1747             G14903           G14901           251.0      0.015      0          0          0          0         
 1761             G14904           G14903           33.0       0.015      0          0          0          0         
+c1               G15850.04        Stb              1          0.01       0          0          0          0         
+c2               Stb              G15847           1          0.01       0          0          0          0         
 
 [XSECTIONS]
 ;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
@@ -1787,6 +1790,8 @@ St1              90       5          0.75       FUNCTIONAL 0         0         4
 1746             CIRCULAR     1.25             0.0        0          0          1                    
 1747             CIRCULAR     1.25             0.0        0          0          1                    
 1761             CIRCULAR     1.0              0.0        0          0          1                    
+c1               CIRCULAR     2                0          0          0          1                    
+c2               CIRCULAR     2                0          0          0          1                    
 
 [TIMESERIES]
 ;;Name           Date       Time       Value     
@@ -1798,6 +1803,8 @@ rainfall                    3          0.4
 rainfall                    4          0.25      
 rainfall                    5          0.125     
 rainfall                    6          0         
+;
+rain_2017_08_12  FILE "C:\Users\jeff\research\4\smart_stormwater_swmm_models\brambleton\validation\rain_2017-08-12.csv"
 
 [REPORT]
 ;;Reporting Options
@@ -2190,10 +2197,12 @@ G14903           12134993.143       3478277.105
 G14904           12134963.200       3478290.990       
 G15850.04        12135137.645       3477375.219       
 F15531           12133300.000       3475000.000       
+Stb              12135027.841       3477259.990       
 
 [VERTICES]
 ;;Link           X-Coord            Y-Coord           
 ;;-------------- ------------------ ------------------
+c2               12134818.340       3477171.710       
 
 [Polygons]
 ;;Subcatchment   X-Coord            Y-Coord           
