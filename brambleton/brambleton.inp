@@ -1034,7 +1034,6 @@ F15531           -5.0       FREE                        NO
 [STORAGE]
 ;;Name           Elev.    MaxDepth   InitDepth  Shape      Curve Name/Params            N/A      Fevap    Psi      Ksat     IMD     
 ;;-------------- -------- ---------- ----------- ---------- ---------------------------- -------- --------          -------- --------
-St1              90       5          0.75       FUNCTIONAL 0         0         40000    0        0       
 Stb              -4.5     12.5       7          FUNCTIONAL 0         0         90000    0        0       
 
 [CONDUITS]
