@@ -11,7 +11,7 @@ td_df = pd.read_csv('NOAA_Tide/MSL_Swells.csv', parse_dates=['Date Time'],
                       index_col=0, infer_datetime_format=True)
 wz_dts = np.unique(wz_df.index.date)
 wz_dts.sort()
-fig, ax = plt.subplots(nrows=3, ncols=2, sharey=True, figsize=(6,8))
+fig, ax = plt.subplots(nrows=2, ncols=3, sharey=True, figsize=(9,6))
 axes = ax.ravel()
 secondary_yax = []
 for i, dt in enumerate(wz_dts):
