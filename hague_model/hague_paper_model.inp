@@ -20,7 +20,7 @@ END_TIME             00:00:00
 SWEEP_START          01/01
 SWEEP_END            12/31
 DRY_DAYS             0
-REPORT_STEP          00:01:00
+REPORT_STEP          00:10:00
 WET_STEP             00:01:00
 DRY_STEP             24:00:00
 ROUTING_STEP         0:00:01 
@@ -2077,8 +2077,8 @@ tide                        23:54      -3.648
 INPUT      YES
 CONTROLS   NO
 SUBCATCHMENTS NONE
-NODES ALL
-LINKS ALL
+NODES NONE
+LINKS NONE
 
 [TAGS]
 
