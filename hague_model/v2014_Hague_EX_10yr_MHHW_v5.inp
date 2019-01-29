@@ -47,7 +47,7 @@ DRY_ONLY         NO
 [RAINGAGES]
 ;;Name           Format    Interval SCF      Source    
 ;;-------------- --------- ------ ------ ----------
-SCS~Type~II,~10-yr CUMULATIVE 0.10000  1.0      TIMESERIES RN#3            
+SCS~Type~II,~10-yr CUMULATIVE 0.10000  1.0      TIMESERIES 2yr12hr         
 
 [SUBCATCHMENTS]
 ;;Name           Rain Gage        Outlet           Area     %Imperv  Width    %Slope   CurbLen  SnowPack        
@@ -768,7 +768,7 @@ F149025          7.59       3.61       0          0          0
 [OUTFALLS]
 ;;Name           Elevation  Type       Stage Data       Gated    Route To        
 ;;-------------- ---------- ---------- ---------------- -------- ----------------
-E143250          -3.54      TIDAL      tide_08_16_18    NO                       
+E143250          -3.54      FREE                        NO                       
 
 [STORAGE]
 ;;Name           Elev.    MaxDepth   InitDepth  Shape      Curve Name/Params            N/A      Fevap    Psi      Ksat     IMD     
@@ -1203,34 +1203,6 @@ r2               st2              F134147          SIDE         0          0.65 
 c6               CIRCULAR     1                0          0          0          1                    
 r1               CIRCULAR     3                0          0          0
 r2               CIRCULAR     1                0          0          0
-
-[CURVES]
-;;Name           Type       X-Value    Y-Value   
-;;-------------- ---------- ---------- ----------
-tide_08_16_18    Tidal      0          -0.902    
-tide_08_16_18               1          -0.564    
-tide_08_16_18               2          0.016     
-tide_08_16_18               3          0.699     
-tide_08_16_18               4          1.27      
-tide_08_16_18               5          1.588     
-tide_08_16_18               6          1.568     
-tide_08_16_18               7          1.266     
-tide_08_16_18               8          0.719     
-tide_08_16_18               9          0.039     
-tide_08_16_18               10         -0.574    
-tide_08_16_18               11         -0.928    
-tide_08_16_18               12         -0.981    
-tide_08_16_18               13         -0.722    
-tide_08_16_18               14         -0.171    
-tide_08_16_18               15         0.535     
-tide_08_16_18               16         1.204     
-tide_08_16_18               17         1.683     
-tide_08_16_18               18         1.801     
-tide_08_16_18               19         1.611     
-tide_08_16_18               20         1.214     
-tide_08_16_18               21         0.597     
-tide_08_16_18               22         -0.059    
-tide_08_16_18               23         -0.584    
 
 [TIMESERIES]
 ;;Name           Date       Time       Value     
