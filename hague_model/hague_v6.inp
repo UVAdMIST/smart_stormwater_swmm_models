@@ -30,13 +30,13 @@ NORMAL_FLOW_LIMITED  FROUDE
 FORCE_MAIN_EQUATION  H-W
 VARIABLE_STEP        0.75
 LENGTHENING_STEP     0
-MIN_SURFAREA         0
-MAX_TRIALS           0
-HEAD_TOLERANCE       0
+MIN_SURFAREA         12.557
+MAX_TRIALS           8
+HEAD_TOLERANCE       0.005
 SYS_FLOW_TOL         5
 LAT_FLOW_TOL         5
 MINIMUM_STEP         0.5
-THREADS              1
+THREADS              8
 
 [EVAPORATION]
 ;;Data Source    Parameters
@@ -47,7 +47,7 @@ DRY_ONLY         NO
 [RAINGAGES]
 ;;Name           Format    Interval SCF      Source    
 ;;-------------- --------- ------ ------ ----------
-SCS~Type~II,~10-yr CUMULATIVE 0.10000  1.0      TIMESERIES rain_matthew    
+SCS~Type~II,~10-yr CUMULATIVE 0.10000  1.0      TIMESERIES 2yr12hr         
 
 [SUBCATCHMENTS]
 ;;Name           Rain Gage        Outlet           Area     %Imperv  Width    %Slope   CurbLen  SnowPack        
@@ -768,7 +768,7 @@ F149025          7.59       3.61       0          0          0
 [OUTFALLS]
 ;;Name           Elevation  Type       Stage Data       Gated    Route To        
 ;;-------------- ---------- ---------- ---------------- -------- ----------------
-E143250          -3.54      TIMESERIES tide_matthew     NO                       
+E143250          -3.54      FREE                        NO                       
 
 [STORAGE]
 ;;Name           Elev.    MaxDepth   InitDepth  Shape      Curve Name/Params            N/A      Fevap    Psi      Ksat     IMD     
@@ -896,7 +896,6 @@ st2              0        6          0          FUNCTIONAL 20000     0         0
 15453            E143335          E143327          109.71     0.012      0          0          0          0         
 15455            F143649          F143648          34.61      0.012      0          0          0          0         
 15475            E143340          E143339          71.47      0.012      0          0          0          0         
-15499            E143339          E143335          141.26     0.012      0          0          0          0         
 15501            F143609          F146005          265.9      0.014      0          0          0          0         
 15523            E143284          E143282          236.07     0.012      0          0          0          0         
 15640            E143283          E143282          47.03      0.012      0          0          0          0         
@@ -985,6 +984,11 @@ st2              0        6          0          FUNCTIONAL 20000     0         0
 23646            F139015          F139004          405.75     0.012      0          0          0          0         
 23673            F139015          F139018          97.06      0.012      0          0          0          0         
 c6               F139018          st2              400        0.01       0          0          0          0         
+
+[PUMPS]
+;;Name           From Node        To Node          Pump Curve       Status   Sartup Shutoff 
+;;-------------- ---------------- ---------------- ---------------- ------ -------- --------
+15499            E143339          E143335          *                ON       1        0.5     
 
 [ORIFICES]
 ;;Name           From Node        To Node          Type         Offset     Qcoeff     Gated    CloseTime 
@@ -1112,7 +1116,6 @@ r2               st2              F134147          SIDE         0          0.65 
 15453            RECT_CLOSED  6                4          0          0          1                    
 15455            CIRCULAR     1.25             0.0001     0          0          1                    
 15475            CIRCULAR     2                0.0001     0          0          1                    
-15499            CIRCULAR     1.5              0.0001     0          0          1                    
 15501            CIRCULAR     2                0.0001     0          0          1                    
 15523            CIRCULAR     2.5              0.0001     0          0          1                    
 15640            CIRCULAR     1.25             0.0001     0          0          1                    
